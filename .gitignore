@@ -1,0 +1,26 @@
+# Node.js related files
+node_modules/
+dist/
+package-lock.json
+
+# OS generated files
+.DS_Store
+.Trashes
+Thumbs.db
+.idea/
+
+.env
+.phpstorm.meta.php
+_ide_helper.php
+vendor/
+storage/oauth-private.key
+storage/oauth-public.key
+public/storage
+storage/framework/laravel-excel
+
+storage/logs/
+_docker/.env
+_docker/laravel-horizon/supervisord.d/laravel-horizon.conf
+_docker/logs
+_docker/nginx/ssl
+.phpunit.result.cache

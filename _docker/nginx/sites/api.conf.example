@@ -1,0 +1,99 @@
+# проверка может ли клиент (браузер) принимать webp
+map $http_accept $webp_suffix {
+    default "";
+    "~*webp" ".webp";
+}
+
+# получает путь к изображению без расширения
+map $uri $image {
+    ~*^/(images|storage)/(.+)\.(jpe?g|png)$ /$1/$2;
+}
+
+# получает путь к изображению учитывая админский шаблон
+map $uri $admin_image {
+    ~*^/(images|storage)/(.+/)?(\w+)_.+\.(jpe?g|png)$ /$1/$2$3_max.$4;
+}
+
+
+server {
+    listen 80 default_server;
+
+    # any hostname
+    server_name _;
+
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    #listen [::]:443 ssl http2 ipv6only=on;
+    ssl_certificate /etc/nginx/ssl/default.crt;
+    ssl_certificate_key /etc/nginx/ssl/default.key;
+
+    server_name www.crypto-app.com;
+
+    return 301 https://crypto-app.com$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    #listen [::]:443 ssl http2 ipv6only=on;
+    ssl_certificate /etc/nginx/ssl/default.crt;
+    ssl_certificate_key /etc/nginx/ssl/default.key;
+
+    server_name crypto-app.com api.crypto-app.com;
+    root /var/www/public;
+    index index.php;
+
+    gzip on;
+    gzip_comp_level 6;
+    gzip_min_length 500;
+    gzip_proxied any;
+    gzip_vary on;
+    gzip_types text/plain application/json text/css text/javascript application/javascript text/xml application/xml image/svg+xml;
+
+    # запретим показ во фрейме на чужом домене
+    add_header X-Frame-Options "SAMEORIGIN";
+
+    # перехват ошибок от php, чтобы ничего не показать клиенту
+    fastcgi_intercept_errors on;
+
+    location ~ (images|storage) {
+        expires max;
+        add_header Vary Accept;
+        try_files $image$webp_suffix $admin_image $uri =404;
+    }
+
+    location / {
+        expires max;
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    #location ~ (?<no_slash>.+)\/$ {
+    #    return 301 $scheme://$host$no_slash$is_args$args;
+    #}
+
+    location ~ \.php$ {
+        try_files $uri /index.php =404;
+        fastcgi_pass php-upstream;
+        fastcgi_index index.php;
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        #fixes timeouts
+        fastcgi_read_timeout 600;
+        include fastcgi_params;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/letsencrypt/;
+        log_not_found off;
+    }
+
+    error_log /var/log/nginx/laravel_error.log;
+    access_log off;
+}
