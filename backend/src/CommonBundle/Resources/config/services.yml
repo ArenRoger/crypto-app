@@ -1,0 +1,26 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  App\CommonBundle\Controller\:
+    resource: '../../Controller/*'
+    autowire: true
+    public: true
+    tags: [ 'controller.service_arguments' ]
+
+  App\CommonBundle\DTO\:
+    resource: '../../DTO/*'
+    autowire: true
+    public: true
+
+  App\CommonBundle\Tests\:
+    resource: '../../Tests/*'
+    autowire: true
+    public: true
+
+  Psr\Http\Client\ClientInterface: '@psr18.client'
+
+  psr18.client:
+    class: GuzzleHttp\Client

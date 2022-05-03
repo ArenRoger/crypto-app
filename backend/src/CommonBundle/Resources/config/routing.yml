@@ -1,0 +1,8 @@
+controllers:
+  resource: ../src/CommonBundle/Controller/
+  type: annotation
+  prefix: /api
+
+app_exchange_rate_bundle:
+  resource: '@AppExchangeRateBundle/Resources/config/routing.yml'
+#  resource: './src/ExchangeRateBundle/Resources/config/routing.yml'

@@ -1,0 +1,34 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  App\ExchangeRateBundle\Controller\:
+    resource: '../../Controller/*'
+    autowire: true
+    public: true
+
+  App\ExchangeRateBundle\DTO\:
+    resource: '../../DTO/*'
+    autowire: true
+    public: true
+
+  psr18.client:
+    public: true
+    class: App\CommonBundle\Tests\Fake\ClientFake
+
+  App\ExchangeRateBundle\Service\:
+    resource: '../../Service/*'
+    autowire: true
+    public: true
+    tags: [ 'controller.service_arguments' ]
+
+  App\ExchangeRateBundle\Tests\:
+    resource: '../../Tests/*'
+    autowire: true
+    public: true
+
+  App\ExchangeRateBundle\Service\Strategy\CryptoStrategy:
+    autowire: true
+    public: true

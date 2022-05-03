@@ -1,7 +1,13 @@
 controllers:
-    resource: ../src/Controller/
+    resource: ../src/ExchangeRateBundle/Controller/
     type: annotation
+    prefix: api/exchange-rate
 
 kernel:
     resource: ../src/Kernel.php
     type: annotation
+
+#exchange_rate_bundle:
+#  host: '%domain.exchange_rate_bundle%'
+#  resource: '@RbkPaymentsMerchantBundle/Resources/config/routing.yml'
+#  prefix: /

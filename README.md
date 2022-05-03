@@ -1,4 +1,4 @@
-# TEST TASK
+# CRYPTO APP
 
 ## START
 
@@ -39,3 +39,5 @@ php artisan migrate --seed
 
 #### Полезно для schema
 Чтобы заносить сразу в бд схемы, удобно использовать [этот сайт](https://onlinetexttools.com/json-stringify-text)   
+
+
