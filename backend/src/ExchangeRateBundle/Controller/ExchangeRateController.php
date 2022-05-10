@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Json;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+
 class ExchangeRateController extends BaseController
 {
     protected GetExchangeRateService $getExchangeRateService;
@@ -36,6 +37,8 @@ class ExchangeRateController extends BaseController
      */
     public function get(Request $request): JsonResponse
     {
+        return $this->json($this->getUser()->getEmail());
+        die();
         $exchangeRateGetDto = new ExchangeRateGetDto($request->query->all());
         $errors = $this->validateDto($exchangeRateGetDto);
         if (count($errors) > 0) {

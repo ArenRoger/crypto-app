@@ -14,8 +14,10 @@ services:
     autowire: true
     public: true
 
+  GuzzleHttp\ClientInterface: '@psr18.client'
+
   psr18.client:
-    class: GuzzleHttp\ClientInterface
+    class: GuzzleHttp\Client
 
   App\ExchangeRateBundle\Service\:
     resource: '../../Service/*'

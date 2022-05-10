@@ -1,4 +1,19 @@
-controllers:
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+app.swagger:
+    path: /api/doc.json
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger }
+
+auth_bundle:
+    resource: ../src/AuthBundle/Controller/
+    type: annotation
+    prefix: api/auth
+
+exchange_rate_bundle:
     resource: ../src/ExchangeRateBundle/Controller/
     type: annotation
     prefix: api/exchange-rate
@@ -6,8 +21,3 @@ controllers:
 kernel:
     resource: ../src/Kernel.php
     type: annotation
-
-#exchange_rate_bundle:
-#  host: '%domain.exchange_rate_bundle%'
-#  resource: '@RbkPaymentsMerchantBundle/Resources/config/routing.yml'
-#  prefix: /

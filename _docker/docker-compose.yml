@@ -305,6 +305,22 @@ services:
       networks:
         - backend
 
+    postgres_crypto_app:
+      image: timescale/timescaledb:latest-pg12
+      container_name: postgres_crypto_app
+      working_dir: /application-crypto-app
+      volumes:
+        - .:/application-crypto-app
+        - ./postgres:/var/lib/postgresql/data
+      environment:
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        POSTGRES_DB: ${POSTGRES_DATABASE}
+      ports:
+        - "${POSTGRES_EXTERNAL_PORT}:5432"
+      networks:
+        - backend
+
 ### Redis ################################################
     redis:
       build: ./redis

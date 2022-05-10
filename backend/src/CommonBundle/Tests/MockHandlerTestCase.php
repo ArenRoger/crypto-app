@@ -10,6 +10,20 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class MockHandlerTestCase extends AbstractMangoWebTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // TODO Truncate all db
+        $this->getEntityManager()->beginTransaction();
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        $this->getEntityManager()->close();
+    }
+
     /**
      * @var ClientFake|null
      */

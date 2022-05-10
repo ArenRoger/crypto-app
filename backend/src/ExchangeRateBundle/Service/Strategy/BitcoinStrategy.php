@@ -4,8 +4,8 @@ namespace App\ExchangeRateBundle\Service\Strategy;
 
 use App\ExchangeRateBundle\Exception\BitcoinApiCallErrorException;
 use App\ExchangeRateBundle\Type\CryptoRate;
-use GuzzleHttp\Client;
-use Psr\Http\Client\ClientInterface;
+
+use GuzzleHttp\ClientInterface;
 use Psr\Log\LoggerInterface;
 
 class BitcoinStrategy implements CryptoStrategy

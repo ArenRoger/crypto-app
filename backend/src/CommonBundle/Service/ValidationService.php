@@ -5,7 +5,8 @@ namespace App\CommonBundle\Service;
 use App\CommonBundle\Exception\ValidateRequestException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class ValidationService{
+class ValidationService
+{
 
     public ValidatorInterface $validator;
 

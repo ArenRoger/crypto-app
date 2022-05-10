@@ -24,6 +24,9 @@
         <testsuite name="ExchangeRateBundle Test Suite">
             <directory>src/ExchangeRateBundle/Tests</directory>
         </testsuite>
+        <testsuite name="ExchangeRateBundle Test Suite">
+            <directory>src/AuthBundle/Tests</directory>
+        </testsuite>
     </testsuites>
 
     <coverage processUncoveredFiles="true">

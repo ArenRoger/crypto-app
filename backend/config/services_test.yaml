@@ -6,6 +6,7 @@
 imports:
   - { resource: '../src/CommonBundle/Resources/config/services_test.yml' }
   - { resource: '../src/ExchangeRateBundle/Resources/config/services_test.yml' }
+  - { resource: '../src/AuthBundle/Resources/config/services_test.yml' }
 parameters:
 
 services:

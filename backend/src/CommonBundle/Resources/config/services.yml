@@ -20,7 +20,7 @@ services:
     autowire: true
     public: true
 
-  Psr\Http\Client\ClientInterface: '@psr18.client'
+  GuzzleHttp\ClientInterface: '@psr18.client'
 
   psr18.client:
     class: GuzzleHttp\Client

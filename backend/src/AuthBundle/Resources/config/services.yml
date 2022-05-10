@@ -1,0 +1,38 @@
+#parameters:
+#  session: session -> ХЗ Так надо или нет, надо разобратся как работает сессия в симфони
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  App\AuthBundle\Controller\:
+    resource: '../../Controller/*'
+    autowire: true
+    public: true
+
+  App\AuthBundle\DTO\:
+    resource: '../../DTO/*'
+    autowire: true
+    public: true
+
+  App\AuthBundle\Security\:
+    resource: '../../Security/*'
+    autowire: true
+    public: true
+
+  GuzzleHttp\ClientInterface: '@psr18.client'
+
+  psr18.client:
+    class: GuzzleHttp\Client
+
+  App\AuthBundle\Service\:
+    resource: '../../Service/*'
+    autowire: true
+    public: true
+    tags: [ 'controller.service_arguments' ]
+
+  App\AuthBundle\Tests\:
+    resource: '../../Tests/*'
+    autowire: true
+    public: true

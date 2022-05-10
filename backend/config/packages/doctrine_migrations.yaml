@@ -1,0 +1,7 @@
+doctrine_migrations:
+    migrations_paths:
+        'App\AuthBundle\Migrations': '@AuthBundle/Migrations'
+        'App\CommonBundle\Migrations': '@CommonBundle/Migrations'
+        'App\ExchangeRateBundle\Migrations': '@ExchangeRateBundle/Migrations'
+    enable_profiler: '%kernel.debug%'
+

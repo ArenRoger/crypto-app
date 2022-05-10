@@ -1,0 +1,18 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: CryptoApp Api
+            description: CryptoApp Api
+            version: 1.0.0
+        components:
+            securitySchemes:
+                Bearer:
+                    type: apiKey
+                    description: 'Authorization: Bearer {jwt}'
+                    name: Authorization
+                    in: header
+        security:
+            -   Bearer: [ ]
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc

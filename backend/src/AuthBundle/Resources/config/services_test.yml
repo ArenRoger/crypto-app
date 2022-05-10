@@ -1,0 +1,30 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  App\AuthBundle\Controller\:
+    resource: '../../Controller/*'
+    autowire: true
+    public: true
+
+  App\AuthBundle\DTO\:
+    resource: '../../DTO/*'
+    autowire: true
+    public: true
+
+  psr18.client:
+    public: true
+    class: App\CommonBundle\Tests\Fake\ClientFake
+
+  App\AuthBundle\Service\:
+    resource: '../../Service/*'
+    autowire: true
+    public: true
+    tags: [ 'controller.service_arguments' ]
+
+  App\AuthBundle\Tests\:
+    resource: '../../Tests/*'
+    autowire: true
+    public: true
